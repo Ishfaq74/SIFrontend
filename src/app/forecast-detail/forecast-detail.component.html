@@ -1,0 +1,64 @@
+<div class="form-container">
+    <div class="">
+        <div>
+            <p-table #dt [value]="Data" [scrollable]="true" scrollHeight="calc(100vh - 225px)" responsiveLayout="scroll"
+                [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [pageLinks]="page"
+                styleClass="p-datatable-striped" class="dashboard-table" [showCurrentPageReport]="true"
+                [(first)]="first" currentPageReportTemplate="Showing {last} out of {totalRecords} "
+                [rowsPerPageOptions]="optionpage" selectionMode="single" [(selection)]="selectedProduct2" dataKey="id"
+                 (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                 [globalFilterFields]="['title']"
+                 >
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="header-btn">
+
+                            <i class="pi pi-angle-left cursor" (click)="goBack()" style="font-size: 2rem"></i>
+<!-- <span>Forecasting</span> -->
+
+                            <!-- <img alt="logo" class="cursor" src="../../assets/icons/plus.svg" style="width: 1.5rem" /> -->
+
+                        </div>
+                        <!-- <span >
+                            <i class="pi pi-angle-left" style="font-size: 2rem"></i>
+                            Forecasting -->
+                            <!-- <span class="p-input-icon-right"> -->
+                                
+                               
+                                <!-- <i class="pi pi-search"></i>
+                                <input type="text" (input)="dt.filterGlobal('search', 'contains')" class="search-input" pInputText placeholder="Search" /> -->
+                            <!-- </span> -->
+                            <!-- <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'contains')" [value]="dt.filters['title']?.value" placeholder="Search by Name" class="p-column-filter"> -->
+
+                        <!-- </span> -->
+                        <div class="header-btn">
+                            <i class="pi pi-ellipsis-h cursor" (click)="goBack()" style="font-size: 2rem"></i>
+                            <!-- <img alt="logo" class="m-r-20 cursor" src="../../assets/icons/signal.svg"
+                                style="width: 1.5rem" />
+
+
+                            <img alt="logo" class="cursor" src="../../assets/icons/plus.svg" style="width: 1.5rem" /> -->
+
+                        </div>
+
+
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of schema" pSortableColumn="{{col.field}}">{{col.header}} <p-sortIcon
+                                field="{{col.field}}"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-data>
+                    <tr [pSelectableRow]="data">
+                        <td *ngFor="let col of schema">{{data[col.field]}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+</div>
