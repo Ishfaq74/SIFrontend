@@ -1,86 +1,91 @@
-:host ::ng-deep .dashboard-table{
-    .p-datatable
-     .p-datatable-thead > tr > th {
-        background-color: white;
-        min-width: 148px;
-        color: #02577A;
-}
-.p-datatable .p-datatable-tbody > tr {
-    background: #F6F6F6 0% 0% no-repeat padding-box;
-   
-}
-.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+:host ::ng-deep .dashboard-table {
+  .p-datatable .p-datatable-thead > tr > th {
+    background-color: white;
+    min-width: 148px;
+    color: #02577a;
+  }
+  .p-datatable .p-datatable-tbody > tr {
+    background: #f6f6f6 0% 0% no-repeat padding-box;
+  }
+  .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
     background: #fcfcfc !important;
-}
-.p-datatable .p-datatable-header {
+  }
+  .p-datatable .p-datatable-header {
     background: white;
     border: none;
     color: #495057;
-   
+
     font-weight: 600;
     padding: 16px 0px 16px 0px;
-}
-.p-button {
+  }
+  .p-button {
     /* color: #ffffff; */
     background: transparent;
     border: white;
     border-radius: 50px;
-}
+  }
 
-.p-paginator {
+  .p-paginator {
     display: block !important;
     text-align: end;
     padding: 8px 0px 8px 0px;
-     .p-paginator-current {
-        float: left;
-     }
-      .p-paginator-last {
-       display: none;
+    .p-paginator-current {
+      float: left;
     }
-     .p-paginator-first {
-        display: none;
+    .p-paginator-last {
+      display: none;
     }
-}
+    .p-paginator-first {
+      display: none;
+    }
+  }
 
-.p-overlaypanel > .overlayPanel{
-
+  .p-overlaypanel > .overlayPanel {
     margin: 0px 0px 10px 0px;
-}
-
-
-
+  }
 }
 
 .menu-custom {
-    z-index: 1001;
-    transform-origin: center top;
-    top: 52.984px;
-    left: 1056px;
-
+  z-index: 1001;
+  transform-origin: center top;
+  top: 52.984px;
+  left: 1056px;
 }
-.search-input{
-    width: 394px;
+.search-input {
+  width: 394px;
 }
-.cursor{
-    cursor: pointer;
+.cursor {
+  cursor: pointer;
 }
-.reasonButton{
-    background-color: #ececec !important;
-    color: #000 !important;
+.reasonButton {
+  background-color: #ececec !important;
+  color: #000 !important;
 }
-.m-r-20{
-    margin-right: 20px;
+.m-r-20 {
+  margin-right: 20px;
 }
-.d-text{
-    text-align: left;
-        font: normal normal normal 20px/27px Open Sans;
-        letter-spacing: 0px;
-        color: #02577A;
-        opacity: 1;
+.d-text {
+  text-align: left;
+  font: normal normal normal 20px/27px Open Sans;
+  letter-spacing: 0px;
+  color: #02577a;
+  opacity: 1;
 }
-.m-t-14{
-    margin-top: 14px;
+.m-t-14 {
+  margin-top: 14px;
 }
-.form-container{
-    padding: 22px 20px 0px 20px;
+.form-container {
+  padding: 22px 20px 0px 20px;
+}
+.p-overlaypanel {
+  box-shadow: none !important;
+}
+.overlayPanel {
+  padding: 0px 0px 10px 0px;
+  label {
+    margin-left: 10px;
+  }
+}
+.p-button:focus {
+  box-shadow: none;
 }

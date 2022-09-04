@@ -7,19 +7,18 @@
                 styleClass="p-datatable-striped" class="dashboard-table" [showCurrentPageReport]="true"
                 [(first)]="first" currentPageReportTemplate="Showing {last} out of {totalRecords} "
                 [rowsPerPageOptions]="optionpage" selectionMode="single" [(selection)]="selectedProduct2" dataKey="id"
-                 (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
-                 [globalFilterFields]="['title']"
-                 >
+                (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+                [globalFilterFields]="['Name','reportId']">
                 <ng-template pTemplate="caption">
                     <div class="flex align-items-center justify-content-between">
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <span class="p-input-icon-right">
                                 <i class="pi pi-search"></i>
-                                
-                                <input type="text" (input)="dt.filterGlobal('search', 'contains')" class="search-input" pInputText placeholder="Search" />
+
+                                <input type="text" #box (input)="dt.filterGlobal(box.value, 'contains')"
+                                    class="search-input" pInputText placeholder="Search" />
                             </span>
-                            <!-- <input pInputText type="text" (input)="dt.filter($event.target.value, 'title', 'contains')" [value]="dt.filters['title']?.value" placeholder="Search by Name" class="p-column-filter"> -->
 
                         </span>
                         <div class="header-btn">
@@ -27,79 +26,96 @@
                             <p-menu #menu [popup]="true" class="menu-custom" [model]="items"></p-menu>
                             <p-overlayPanel #op>
                                 <ng-template pTemplate>
-                                    <h4 style="color: #02577A;">Customize Table Columns</h4>
-                                    <div class="p-field-checkbox overlayPanel"> 
-                                        <p-checkbox name="group1" value="Name" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="na"></p-checkbox>
+                                    <h4 style="color: #02577a">Customize Table Columns</h4>
+                                    <div class="p-field-checkbox overlayPanel">
+                                        <p-checkbox name="group1" value="Name" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="na"></p-checkbox>
                                         <label for="na">Name</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="IRR" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="ir"></p-checkbox>
+                                        <p-checkbox name="group1" value="IRR" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="ir"></p-checkbox>
                                         <label for="ir">IRR</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="Created On" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="co"></p-checkbox>
+                                        <p-checkbox name="group1" value="Created On" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="co"></p-checkbox>
                                         <label for="co">Created On</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="Production" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="pr"></p-checkbox>
+                                        <p-checkbox name="group1" value="Production" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="pr"></p-checkbox>
                                         <label for="pr">Production</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="Goal" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="go"></p-checkbox>
+                                        <p-checkbox name="group1" value="Goal" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="go"></p-checkbox>
                                         <label for="go">Goal</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="Resources" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="re"></p-checkbox>
+                                        <p-checkbox name="group1" value="Resources" [(ngModel)]="selectedColumns"
+                                            (click)="onselectColumns()" inputId="re"></p-checkbox>
                                         <label for="re">Resources</label>
                                     </div>
                                     <div class="p-field-checkbox overlayPanel">
-                                        <p-checkbox name="group1" value="Operating Revenue" [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="or"></p-checkbox>
+                                        <p-checkbox name="group1" value="Operating Revenue"
+                                            [(ngModel)]="selectedColumns" (click)="onselectColumns()" inputId="or">
+                                        </p-checkbox>
                                         <label for="or">Operating Revenue</label>
                                     </div>
                                 </ng-template>
                             </p-overlayPanel>
                             <!-- <button type="button" pButton icon="pi pi-list" label="Show"></button> -->
-                            <p-button styleClass="px-3" class="m-r-20 cursor"  (click)="op.toggle($event)">
+                            <p-button styleClass="px-3" class="m-r-20 cursor" (click)="op.toggle($event)">
                                 <ng-template pTemplate="content">
-                                    <img alt="logo" src="../../assets/icons/signal.svg" style="width: 1.5rem"  />
+                                    <img alt="logo" src="../../assets/icons/signal.svg" style="width: 1.5rem" />
                                 </ng-template>
                             </p-button>
-                           
+
                             <!-- <img alt="logo" class="m-r-20 cursor" src="../../assets/icons/signal.svg"
                                 style="width: 1.5rem" /> -->
 
-                                <p-button styleClass="px-3" class="m-r-20 cursor " (click)="goForecast()">
-                                    <ng-template pTemplate="content">
-                                        <img alt="logo" src="../../assets/icons/plus.svg" style="width: 1.5rem"  />
-                                    </ng-template>
-                                </p-button>
+                            <p-button styleClass="px-3" class="m-r-20 cursor" (click)="goForecast()">
+                                <ng-template pTemplate="content">
+                                    <img alt="logo" src="../../assets/icons/plus.svg" style="width: 1.5rem" />
+                                </ng-template>
+                            </p-button>
                             <!-- <img alt="logo" class="cursor" src="../../assets/icons/plus.svg" style="width: 1.5rem" /> -->
-
                         </div>
-
-
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th *ngFor="let col of schema" pSortableColumn="{{col.field}}">{{col.header}} <p-sortIcon
-                                field="{{col.field}}"></p-sortIcon>
+                        <th *ngFor="let col of schema" pSortableColumn="{{ col.field }}">
+                            {{ col.header }} <p-sortIcon field="{{ col.field }}"></p-sortIcon>
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-data>
                     <tr [pSelectableRow]="data">
                         <td *ngFor="let col of schema">
-                            <span *ngIf="col.field!=='Assessment'">{{data[col.field]}}</span>
-                            <span *ngIf="col.field==='Assessment'">
-                                <p-button styleClass="px-3" class="m-r-20 cursor" (click)="downloadPdf()">
+                            <span *ngIf="col.field !== 'Assessment'">{{
+                                data[col.field]
+                                }}</span>
+                            <span *ngIf="col.field === 'Assessment'">
+                                <p-button styleClass="px-3" class="cursor" (click)="downloadPdf()">
                                     <ng-template pTemplate="content">
-                                        <img alt="logo" src="../../assets/icons/download.svg" style="width: 1rem"  />
+                                        <img alt="logo" src="../../assets/icons/download.svg" style="width: 1rem" />
                                     </ng-template>
                                 </p-button>
-                                <p-button styleClass="px-3" class="m-r-20 cursor" (click)="deleteItem(data)">
+                                <p-button styleClass="px-3" class="btn-delete cursor p-p-0" (click)="deleteItem(data)"
+                                    (mouseenter)="mouseEnter('true',data)" (mouseleave)="mouseLeave('false',data)">
                                     <ng-template pTemplate="content">
-                                        <img alt="logo" src="../../assets/icons/delete.svg" style="width: 1rem"  />
+                                        <div *ngIf="data.mousehover;else other_content">
+                                            <img alt="logo" src="../../assets/icons/trash-red.svg"
+                                                style="width: 1rem" />
+                                        </div>
+
+                                        <ng-template #other_content> <img alt="logo" src="../../assets/icons/delete.svg"
+                                                style="width: 1rem" /></ng-template>
+
+
+
                                     </ng-template>
                                 </p-button>
                             </span>
@@ -107,8 +123,6 @@
                     </tr>
                 </ng-template>
             </p-table>
-
         </div>
     </div>
-
 </div>
